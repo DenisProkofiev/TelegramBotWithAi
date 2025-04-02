@@ -15,7 +15,6 @@ public class TelegramBot extends TelegramLongPollingBot {
     public TelegramBot(DefaultBotOptions options, String botToken, TelegramBotProperties botProperties,
                        OpenApiService openApiService) {
         super(options, botToken);
-        System.out.println(botProperties);
         this.botProperties = botProperties;
         this.openApiService = openApiService;
     }
