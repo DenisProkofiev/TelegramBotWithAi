@@ -1,7 +1,7 @@
 FROM maven:3.9.4 as build
 WORKDIR /app
 COPY pom.xml /app
-RUN mvn dependancy:resolve
+RUN mvn dependency:resolve
 COPY . /app
 RUN mvn clean
 RUN mvn package
