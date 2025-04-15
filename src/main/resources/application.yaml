@@ -3,16 +3,19 @@ spring:
     name: TelegramBotWithAI
   ai:
     openai:
-      base-url: https://api.openai.com/
-      api-key: ${OPENAI_TOKEN}
-      chat:
-        model: gpt-3.5-turbo
+#      base-url: https://api.openai.com/
+      base-url: https://api.deepseek.com/
+#      api-key: ${OPENAI_TOKEN}
+      api-key: ${DEEPSEEK_TOKEN}
+#      model: gpt-3.5-turbo
+      model: deepseek-chat
     deep-seek:
-      base-url: https://api.deepseek.com
-      token: ${DEEPSEEK_TOKEN}
-      contentType: application/json
-
+      base-url: https://api.deepseek.com/
+      api-key: ${DEEPSEEK_TOKEN}
+      model: deepseek-chat
 telegram:
   bot:
     name: hellforge_telegram_gpt_bot
     token: ${TELEGRAM_BOT_TOKEN}
+    classpathAllowedUsers: ${ALLOWED_USERS}
+#    classpathAllowedUsers: allowed_users.json
