@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 @DependsOn("openAIConfigurationProperties")
 public class OpenApiService {
 
-    private final OpenAIConfigurationProperties aiConfigurationProperties;
     private final ChatClient chatClient;
 
     public String getResponseFromAI(String message) {
