@@ -27,7 +27,6 @@ public class TelegramBotProperties {
     private String token;
     private String name;
     private String classpathAllowedUsers;
-    @Getter
     private List<TelegramUser> allowedUsers;
 
     @PostConstruct
