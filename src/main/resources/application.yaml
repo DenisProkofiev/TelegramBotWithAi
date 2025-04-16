@@ -17,4 +17,4 @@ telegram:
   bot:
     name: hellforge_telegram_gpt_bot
     token: ${TELEGRAM_BOT_TOKEN}
-    classpathAllowedUsers: src/main/resources/allowed_users.json
+    classpathAllowedUsers: allowed_users.json

@@ -12,10 +12,9 @@ import ru.hellforge.telegrambotwithai.exception.UserlistNotFoundException;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
+import static java.util.Objects.isNull;
 import static ru.hellforge.telegrambotwithai.util.UtilClass.OBJECT_MAPPER;
 
 @Slf4j
@@ -31,12 +30,16 @@ public class TelegramBotProperties {
 
     @PostConstruct
     public void init() {
-        if (Files.notExists(Path.of(classpathAllowedUsers))) {
+        var usersResource = getClass().getClassLoader().getResourceAsStream(classpathAllowedUsers);
+
+        if (isNull(usersResource)) {
             throw new UserlistNotFoundException(classpathAllowedUsers);
         }
+
         try {
             File file = new File(classpathAllowedUsers);
-            this.allowedUsers = OBJECT_MAPPER.readValue(file, new TypeReference<List<TelegramUser>>() {});
+            this.allowedUsers = OBJECT_MAPPER.readValue(file, new TypeReference<List<TelegramUser>>() {
+            });
             log.info("Allowed users: {}", allowedUsers);
         } catch (IOException e) {
             throw new RuntimeException(e);
