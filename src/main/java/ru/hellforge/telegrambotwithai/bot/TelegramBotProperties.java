@@ -30,16 +30,15 @@ public class TelegramBotProperties {
 
     @PostConstruct
     public void init() {
-        var usersResource = getClass().getClassLoader().getResourceAsStream(classpathAllowedUsers);
+        var usersFile = new File(classpathAllowedUsers);
 
-        if (isNull(usersResource)) {
+        if (!usersFile.exists()) {
             throw new UserlistNotFoundException(classpathAllowedUsers);
         }
 
         try {
-            File file = new File(classpathAllowedUsers);
-            this.allowedUsers = OBJECT_MAPPER.readValue(file, new TypeReference<List<TelegramUser>>() {
-            });
+            allowedUsers = OBJECT_MAPPER.readValue(usersFile, new TypeReference<List<TelegramUser>>() {});
+
             log.info("Allowed users: {}", allowedUsers);
         } catch (IOException e) {
             throw new RuntimeException(e);
